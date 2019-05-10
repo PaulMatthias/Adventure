@@ -9,6 +9,7 @@
  * @author Paul
  */
 import java.awt.BorderLayout;
+import java.sql.SQLException;
 import javax.swing.JLabel;
 public class GeneralPanel extends javax.swing.JPanel{
 
@@ -30,7 +31,7 @@ public class GeneralPanel extends javax.swing.JPanel{
 		add(title, BorderLayout.PAGE_START);
 	}
 	
-	public void setMainText(String s){
+	public void setMainText(String s) throws SQLException{
 		//set Main text of new Panel, aim is to read it from a database (look into sql stuff)
 		JLabel l = new JLabel();
 		//Look stuff up in a database and fill in here

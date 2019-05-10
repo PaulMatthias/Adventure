@@ -1,6 +1,7 @@
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.sql.SQLException;
 //ww  w  .j a v a 2 s.co  m
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -8,7 +9,10 @@ import javax.swing.JPanel;
 import javax.swing.JLabel;
 
 public class Games extends JFrame {
-	//creates a choosing button which removes on activation the old Panel and loads a new one
+
+	
+//cretae connection to database
+		//creates a choosing button which removes on activation the old Panel and loads a new one
 	private ChooseButton createChooseButton(JPanel gamePanel, JPanel oldPanel, GeneralPanel nextPanel, String s){
 		ChooseButton b = new ChooseButton(s);
 		b.addActionListener(e -> {
@@ -21,7 +25,7 @@ public class Games extends JFrame {
 	}
 
 	// creating general panels
-	private GeneralPanel createGeneralPanel(String title, String data, String bleft, String bright){
+	private GeneralPanel createGeneralPanel(String title, String data, String bleft, String bright) throws SQLException{
 		GeneralPanel g =new GeneralPanel();
 		g.setTitle(title);
 		g.setMainText(data);
@@ -31,7 +35,7 @@ public class Games extends JFrame {
 	}
 
 //begin constructor of the game	
-  public Games() {
+  public Games() throws SQLException {
 	  //create main panel
     JPanel gamePanel = new JPanel();
     gamePanel.setPreferredSize(new Dimension(800, 600));
@@ -44,7 +48,7 @@ public class Games extends JFrame {
     titleOfScreen.setText("Das ist der Titel text der Seite");
     startPanel.add(titleOfScreen,BorderLayout.PAGE_START);
     
-    GeneralPanel nextPanel = createGeneralPanel("Titel", "test.txt", "bleft", "bright");
+    GeneralPanel nextPanel = createGeneralPanel("Titel", "Kapitel 2", "bleft", "bright");
     
     JButton exitButton = new JButton("Exit");
     exitButton.addActionListener(new java.awt.event.ActionListener() {
@@ -61,7 +65,7 @@ public class Games extends JFrame {
     pack();
     setVisible(true);
   }
-  public static void main(String[] args) {
+  public static void main(String[] args) throws SQLException{
     new Games();
   }
 }
