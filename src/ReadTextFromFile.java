@@ -25,14 +25,13 @@ public class ReadTextFromFile
     return data; 
   } 
   
-  public String load(String chapterName) throws SQLException
+  public String loadMainText(String chapterName) throws SQLException
   { 
 	//create connection to databse with storyelements
 	Statement stmt = db.con.createStatement( );
 	String SQL = "SELECT * FROM Story WHERE chapterName = '" + chapterName +"'";
 	ResultSet rs = stmt.executeQuery( SQL );
 	ResultSetMetaData metadata = rs.getMetaData();
-	System.out.println(metadata.getColumnName(3));
 	String fileName = null;
 	while (rs.next()) {
 		fileName = rs.getString("fileName");
@@ -42,7 +41,50 @@ public class ReadTextFromFile
     
 		try {
 			data = new String(Files.readAllBytes(Paths.get("C:\\Users\\Paul\\Desktop\\RPG_STUFF\\"+fileName)), "UTF-8");
-//			data = readFileAsString("C:\\Users\\Paul\\Desktop\\RPG_STUFF\\"+fileName);
+		} catch (Exception ex) {
+			Logger.getLogger(ReadTextFromFile.class.getName()).log(Level.SEVERE, null, ex);
+		}
+    return data;
+  } 
+  
+  public String loadRightButtonText(String chapterName) throws SQLException
+  { 
+	//create connection to databse with storyelements
+	Statement stmt = db.con.createStatement( );
+	String SQL = "SELECT * FROM Story WHERE chapterName = '" + chapterName +"'";
+	ResultSet rs = stmt.executeQuery( SQL );
+	ResultSetMetaData metadata = rs.getMetaData();
+	String fileName = null;
+	while (rs.next()) {
+		fileName = rs.getString("decisionRight");
+	}
+
+    String data = null; 
+    
+		try {
+			data = new String(Files.readAllBytes(Paths.get("C:\\Users\\Paul\\Desktop\\RPG_STUFF\\"+fileName)), "UTF-8");
+		} catch (Exception ex) {
+			Logger.getLogger(ReadTextFromFile.class.getName()).log(Level.SEVERE, null, ex);
+		}
+    return data;
+  } 
+  
+  public String loadLeftButtonText(String chapterName) throws SQLException
+  { 
+	//create connection to databse with storyelements
+	Statement stmt = db.con.createStatement( );
+	String SQL = "SELECT * FROM Story WHERE chapterName = '" + chapterName +"'";
+	ResultSet rs = stmt.executeQuery( SQL );
+	ResultSetMetaData metadata = rs.getMetaData();
+	String fileName = null;
+	while (rs.next()) {
+		fileName = rs.getString("decisionLeft");
+	}
+
+    String data = null; 
+    
+		try {
+			data = new String(Files.readAllBytes(Paths.get("C:\\Users\\Paul\\Desktop\\RPG_STUFF\\"+fileName)), "UTF-8");
 		} catch (Exception ex) {
 			Logger.getLogger(ReadTextFromFile.class.getName()).log(Level.SEVERE, null, ex);
 		}

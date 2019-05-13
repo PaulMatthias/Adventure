@@ -17,12 +17,20 @@ import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.sql.SQLException;
+import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 public class GeneralPanel extends javax.swing.JPanel{
 
-	private int index;
+		// creating general panels
+	public void createGeneralPanel(String data) throws SQLException{
+		//setTitle(title);
+		setMainText(data);
+		addButtons(data);
+	}
+
+	public int index;
 
 	public void setIndex(int i){
 		//storing the index of the database this frame belongs too (for saving purposes etc...)
@@ -46,7 +54,7 @@ public class GeneralPanel extends javax.swing.JPanel{
 		//Look stuff up in a database and fill in here
 		ReadTextFromFile r = new ReadTextFromFile();
 		//r.load(index) this is how it should work at some point
-		String readText = r.load(s);
+		String readText = r.loadMainText(s);
 		JPanel textPanel = new GeneralPanel();
 		textPanel.setLayout(new GridBagLayout());
 		JLabel l = new JLabel("<html><p style=\"width:100px\">"+readText+"</p></html>", SwingConstants.CENTER);
@@ -54,15 +62,23 @@ public class GeneralPanel extends javax.swing.JPanel{
 		GridBagConstraints c = new GridBagConstraints ();
 		c.gridy = 1;
 		c.insets = new Insets (5, 0, 0, 0);
-
  
 		textPanel.add(l , c);
 		add(textPanel, BorderLayout.CENTER);
 	}
 	
-	public void addButton(ChooseButton b, String loc){
+	public void addButtons(String chapterName) throws SQLException{
 		//adds button (TODO: check if button funtionality is better added later, avoid complicate dhandling)
-		if (loc=="left") add(b, BorderLayout.LINE_START);
-		if (loc=="right") add(b, BorderLayout.LINE_END);
+		GeneralPanel buttonRightPanel = new GeneralPanel();
+		GeneralPanel buttonLeftPanel = new GeneralPanel();
+		ButtonCreator bc = new ButtonCreator();
+		
+		JButton buttonLeft = bc.createButton(MainPanel.gamePanel, this, chapterName, "decisionLeft");
+		JButton buttonRight = bc.createButton(MainPanel.gamePanel, this, chapterName, "decisionRight");
+
+		buttonLeftPanel.add(buttonLeft, BorderLayout.CENTER);
+		add(buttonLeftPanel,BorderLayout.LINE_START);
+		buttonRightPanel.add(buttonRight, BorderLayout.CENTER);
+		add(buttonRightPanel,BorderLayout.LINE_END);
 	}
 }
