@@ -41,7 +41,8 @@ public class ReadTextFromFile
     String data = null; 
     
 		try {
-			data = readFileAsString("C:\\Users\\Paul\\Desktop\\RPG_STUFF\\"+fileName);
+			data = new String(Files.readAllBytes(Paths.get("C:\\Users\\Paul\\Desktop\\RPG_STUFF\\"+fileName)), "UTF-8");
+//			data = readFileAsString("C:\\Users\\Paul\\Desktop\\RPG_STUFF\\"+fileName);
 		} catch (Exception ex) {
 			Logger.getLogger(ReadTextFromFile.class.getName()).log(Level.SEVERE, null, ex);
 		}
