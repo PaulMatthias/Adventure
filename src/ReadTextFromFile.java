@@ -40,7 +40,7 @@ public class ReadTextFromFile
     String data = null; 
     
 		try {
-			data = new String(Files.readAllBytes(Paths.get("C:\\Users\\Paul\\Desktop\\RPG_STUFF\\"+fileName)), "UTF-8");
+			data = new String(Files.readAllBytes(Paths.get("C:\\Users\\Paul\\Desktop\\RPG_STUFF\\DBfiles\\"+fileName)), "UTF-8");
 		} catch (Exception ex) {
 			Logger.getLogger(ReadTextFromFile.class.getName()).log(Level.SEVERE, null, ex);
 		}
@@ -62,7 +62,7 @@ public class ReadTextFromFile
     String data = null; 
     
 		try {
-			data = new String(Files.readAllBytes(Paths.get("C:\\Users\\Paul\\Desktop\\RPG_STUFF\\"+fileName)), "UTF-8");
+			data = new String(Files.readAllBytes(Paths.get("C:\\Users\\Paul\\Desktop\\RPG_STUFF\\DBfiles"+fileName)), "UTF-8");
 		} catch (Exception ex) {
 			Logger.getLogger(ReadTextFromFile.class.getName()).log(Level.SEVERE, null, ex);
 		}
@@ -84,10 +84,38 @@ public class ReadTextFromFile
     String data = null; 
     
 		try {
-			data = new String(Files.readAllBytes(Paths.get("C:\\Users\\Paul\\Desktop\\RPG_STUFF\\"+fileName)), "UTF-8");
+			data = new String(Files.readAllBytes(Paths.get("C:\\Users\\Paul\\Desktop\\RPG_STUFF\\DBfiles\\"+fileName)), "UTF-8");
 		} catch (Exception ex) {
 			Logger.getLogger(ReadTextFromFile.class.getName()).log(Level.SEVERE, null, ex);
 		}
     return data;
+  } 
+
+    public String loadLeftButtonLeadTo(String chapterName) throws SQLException
+  { 
+	//create connection to databse with storyelements
+	Statement stmt = db.con.createStatement( );
+	String SQL = "SELECT * FROM Story WHERE chapterName = '" + chapterName +"'";
+	ResultSet rs = stmt.executeQuery( SQL );
+	ResultSetMetaData metadata = rs.getMetaData();
+	String data= null;
+	while (rs.next()) {
+		data = rs.getString("decLeftLeadTo");
+	}
+    	return data;
+  } 
+    
+    public String loadRightButtonLeadTo(String chapterName) throws SQLException
+  { 
+	//create connection to databse with storyelements
+	Statement stmt = db.con.createStatement( );
+	String SQL = "SELECT * FROM Story WHERE chapterName = '" + chapterName +"'";
+	ResultSet rs = stmt.executeQuery( SQL );
+	ResultSetMetaData metadata = rs.getMetaData();
+	String data = null;
+	while (rs.next()) {
+		data = rs.getString("decRightLeadTo");
+	}
+    	return data;
   } 
 } 

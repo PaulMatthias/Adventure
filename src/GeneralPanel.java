@@ -72,9 +72,13 @@ public class GeneralPanel extends javax.swing.JPanel{
 		GeneralPanel buttonRightPanel = new GeneralPanel();
 		GeneralPanel buttonLeftPanel = new GeneralPanel();
 		ButtonCreator bc = new ButtonCreator();
+
+		ReadTextFromFile rs = new ReadTextFromFile();
+		String nextChapterLeft = rs.loadLeftButtonLeadTo(chapterName);
+		String nextChapterRight = rs.loadRightButtonLeadTo(chapterName);
 		
-		JButton buttonLeft = bc.createButton(MainPanel.gamePanel, this, chapterName, "decisionLeft");
-		JButton buttonRight = bc.createButton(MainPanel.gamePanel, this, chapterName, "decisionRight");
+		JButton buttonLeft = bc.createButton(MainPanel.gamePanel, this, nextChapterLeft, "decisionLeft");
+		JButton buttonRight = bc.createButton(MainPanel.gamePanel, this, nextChapterRight, "decisionRight");
 
 		buttonLeftPanel.add(buttonLeft, BorderLayout.CENTER);
 		add(buttonLeftPanel,BorderLayout.LINE_START);

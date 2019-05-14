@@ -15,20 +15,24 @@ CREATE TABLE Story (
 	chapterName  varchar(30),	
 	fileName varchar(20),
 	decisionRight varchar(20),
-	decisionLeft varchar(20)
+	decisionLeft varchar(20),
+	decLeftLeadTo varchar(20),
+	decRightLeadTo varchar(20)
 );
 	/*add stuff here for extedning table*/
 
-INSERT INTO Story (index,chapterName, fileName,decisionLeft,decisionRight) VALUES (1,'Kapitel1','test1.txt','decl1','decr1');
-INSERT INTO Story (index,chapterName, fileName,decisionLeft,decisionRight) VALUES (2,'Kapitel2','test2.txt','decl2','decr2');
-INSERT INTO Story (index,chapterName, fileName,decisionLeft,decisionRight) VALUES (3,'Kapitel3','test3.txt','decl3','decr3');
-INSERT INTO Story (index,chapterName, fileName,decisionLeft,decisionRight) VALUES (4,'Kapitel4','test4.txt','decl4','decr4');
-INSERT INTO Story (index,chapterName, fileName,decisionLeft,decisionRight) VALUES (5,'Kapitel5','test5.txt','decl5','decr5');
-INSERT INTO Story (index,chapterName, fileName,decisionLeft,decisionRight) VALUES (6,'Kapitel6','test6.txt','decl6','decr6');
-INSERT INTO Story (index,chapterName, fileName,decisionLeft,decisionRight) VALUES (7,'Kapitel7','test7.txt','decl7','decr7');
-INSERT INTO Story (index,chapterName, fileName,decisionLeft,decisionRight) VALUES (8,'Kapitel8','test8.txt','decl8','decr8');
-INSERT INTO Story (index,chapterName, fileName,decisionLeft,decisionRight) VALUES (9,'Kapitel9','test9.txt','decl9','decr9');
-INSERT INTO Story (index,chapterName, fileName,decisionLeft,decisionRight) VALUES (10,'Kapitel10','test10.txt','decl10','decr10');
+INSERT INTO Story (index,chapterName, fileName,decisionLeft,decisionRight,decLeftLeadTo,decRightLeadTo) VALUES (1,'Kapitel1','Kapitel1.txt','decl1','decr1','Kapitel2','Kapitel3');
+INSERT INTO Story (index,chapterName, fileName,decisionLeft,decisionRight,decLeftLeadTo,decRightLeadTo) VALUES (2,'Kapitel2','Kapitel2.txt','decl2','decr2','Kapitel4','Kapitel5');
+INSERT INTO Story (index,chapterName, fileName,decisionLeft,decisionRight,decLeftLeadTo,decRightLeadTo) VALUES (3,'Kapitel3','Kapitel3.txt','decl3','decr3','Kapitel5','Kapitel6');
+INSERT INTO Story (index,chapterName, fileName,decisionLeft,decisionRight,decLeftLeadTo,decRightLeadTo) VALUES (4,'Kapitel4','Kapitel4.txt','decl4','decr4','Kapitel7','Kapitel7');
+INSERT INTO Story (index,chapterName, fileName,decisionLeft,decisionRight,decLeftLeadTo,decRightLeadTo) VALUES (5,'Kapitel5','Kapitel5.txt','decl5','decr5','Kapitel7','Kapitel7');
+INSERT INTO Story (index,chapterName, fileName,decisionLeft,decisionRight,decLeftLeadTo,decRightLeadTo) VALUES (6,'Kapitel6','Kapitel6.txt','decl6','decr6','Kapitel8','Kapitel8');
+INSERT INTO Story (index,chapterName, fileName,decisionLeft,decisionRight,decLeftLeadTo,decRightLeadTo) VALUES (7,'Kapitel7','Kapitel7.txt','decl7','decr7','Ende','Ende');
+INSERT INTO Story (index,chapterName, fileName,decisionLeft,decisionRight,decLeftLeadTo,decRightLeadTo) VALUES (8,'Kapitel8','Kapitel8.txt','decl8','decr8','Ende','Ende');
+INSERT INTO Story (index,chapterName, fileName,decisionLeft,decisionRight,decLeftLeadTo,decRightLeadTo) VALUES (9,'Kapitel9','Kapitel9.txt','decl9','decr9','Ende','Ende');
+INSERT INTO Story (index,chapterName, fileName,decisionLeft,decisionRight,decLeftLeadTo,decRightLeadTo) VALUES (10,'Kapitel10','Kapitel10.txt','decl10','decr10','Ende','Ende');
+
+
 
 
 

@@ -40,7 +40,7 @@ public class Games extends JFrame {
     });
 
     ButtonCreator bc = new ButtonCreator();
-    JButton b = bc.createButton(MainPanel.gamePanel, startPanel, "Kapitel1", "decisionRight");
+    JButton b = bc.createButton(MainPanel.gamePanel, startPanel, "Kapitel1", "Start");
     startPanel.add(b, BorderLayout.LINE_START);
     startPanel.add(exitButton, BorderLayout.LINE_END);
 

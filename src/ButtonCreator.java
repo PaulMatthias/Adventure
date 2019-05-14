@@ -43,7 +43,7 @@ public class ButtonCreator {
 	    String data = null; 
 	    
 			try {
-				data = new String(Files.readAllBytes(Paths.get("C:\\Users\\Paul\\Desktop\\RPG_STUFF\\"+fileName)), "UTF-8");
+				data = new String(Files.readAllBytes(Paths.get("C:\\Users\\Paul\\Desktop\\RPG_STUFF\\DBfiles\\"+fileName+".txt")), "UTF-8");
 			} catch (Exception ex) {
 				Logger.getLogger(ReadTextFromFile.class.getName()).log(Level.SEVERE, null, ex);
 			}
@@ -53,7 +53,15 @@ public class ButtonCreator {
 	
 	public JButton createButton(JPanel gamePanel, JPanel oldPanel, String data, String dbentry) throws SQLException{
 		JButton b = new JButton();
-		b.setText(setText(data, dbentry));
+		System.out.println(dbentry);
+		System.out.println(data);
+		System.out.println('\n');
+		if(dbentry == "Start") 
+			{
+				b.setText("Start");
+			}else{
+				b.setText(setText(data, dbentry));
+		}
 		b.addActionListener(e -> {
 			GeneralPanel nextPanel = new GeneralPanel();
 			try {
@@ -64,7 +72,6 @@ public class ButtonCreator {
 
 			MainPanel.gamePanel.remove(oldPanel);
 			MainPanel.gamePanel.add(nextPanel,BorderLayout.CENTER);
-			System.out.println(nextPanel.index);
 			MainPanel.gamePanel.revalidate();
 			//repaint();
 		});	
